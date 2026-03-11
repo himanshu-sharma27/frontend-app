@@ -1,0 +1,13 @@
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 5px;
+}
+
+.box{
+    border: 1px solid gray;
+    padding: 5px;
+    margin: 5px;
+    
+}

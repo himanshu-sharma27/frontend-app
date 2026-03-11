@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./Content.css"
 
 function Content() {
 const [count, setCount] = useState(0);
@@ -26,17 +27,22 @@ const decrement = () => {setCount(count - 1);}
     <div>
       <h3>Products Page</h3>
 
-      <button onClick={decrement}>-</button>
+      {/* <button onClick={decrement}>-</button>
       {count}
-      <button onClick={increment}>+</button>
+      <button onClick={increment}>+</button> */}
 
       <hr />
 
-      <ol>
+      <div className="row">
         {products.map((product) => (
-          <li>{product.name}</li>
+         <div className="box">
+            <img src={`https://backend-app-z2t4.onrender.com/${product.imageUrl}`} width='300px' alt="" />
+            <h3>{product.name}</h3>
+            <p>{product.desc}</p>
+            <h4>{product.price}</h4>
+            </div>
         ))}
-      </ol>
+      </div>
     </div>
   );
 }
