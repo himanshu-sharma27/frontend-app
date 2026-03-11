@@ -5,8 +5,8 @@ function Header() {
         <h1>My Application</h1>
         <ul>
             <li>Home</li>
-            <li>Products</li>
-            <li>Users</li>
+            <li>Cart</li>
+            <li>Orders</li>
             <li>Login</li>
             <li>Logout</li>
         </ul>
