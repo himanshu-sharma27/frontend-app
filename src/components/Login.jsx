@@ -10,7 +10,7 @@ function Login() {
   const handleLogin = async () => {
     const url = API_URL + "/auth/signin";
     const response = await axios.post(url, user);
-    setUser(response)
+    setUser(response.data)
     Navigate("/")
   };
   return (
