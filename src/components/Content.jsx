@@ -1,50 +1,47 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AppContext } from "../App";
 import axios from "axios";
-import "./Content.css"
+import "./Content.css";
 
-const API_URL = import.meta.env.VITE_API_URL// VITE_API_URL is an environment variable that holds the base URL for the API. By using environment variables, you can easily switch between different API endpoints (e.g., development, staging, production) without changing the code. This makes your application more flexible and easier to maintain.
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Content() {
-const [count, setCount] = useState(0);
-const [products, setProducts] = useState([]);
-
-const increment = () =>{ setCount(count + 1);
-    }  
-const decrement = () => {setCount(count - 1);}
-
+  // const [count, setCount] = useState(0);
+  const [products, setProducts] = useState([]);
+  const { user, setUser, cart, setCart } = useContext(AppContext);
   const fetchProducts = async () => {
     const url = `${API_URL}/store`;
     const res = await axios.get(url);
     setProducts(res.data);
   };
-
   useEffect(() => {
     fetchProducts();
   }, []);
 
+  const addToCart = (product) => {
+    const found = cart.find((item) => item._id === product._id);
+    if (!found) {
+      product.quantity = 1;
+      setCart([...cart,product]);
+    }
+  };
+
   return (
     <div>
-      <h3>Products Page</h3>
-
-      {/* <button onClick={decrement}>-</button>
-      {count}
-      <button onClick={increment}>+</button> */}
-
-      <hr />
-
       <div className="row">
         {products.map((product) => (
-         <div className="box">
-            <img src={`${API_URL}/${product.imageUrl}`} width='300px' alt="" />
+          <div className="box">
+            <img src={`${API_URL}/${product.imageUrl}`} width="300px" alt="" />
             <h3>{product.name}</h3>
             <p>{product.desc}</p>
             <h4>{product.price}</h4>
-            <p><button>Add to Cart</button></p>
-            </div>
+            <p>
+              <button onClick={() => addToCart(product)}>Add to Cart</button>
+            </p>
+          </div>
         ))}
       </div>
     </div>
   );
 }
-
 export default Content;
