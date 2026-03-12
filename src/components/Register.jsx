@@ -9,7 +9,7 @@ function Register(){
     const Navigate = useNavigate()
     const handleSubmit= async () =>{
         const url = API_URL+"/auth/signup"
-        const user = await axios.post(url,user)
+        const response = await axios.post(url,user)
         Navigate("/login")
     }
     return(
@@ -18,7 +18,7 @@ function Register(){
             <p><input type="text" onChange={(e) =>setUser({...user,name:e.target.value})} placeholder="Name"/></p>
             <p><input type="text" onChange={(e) =>setUser({...user,email:e.target.value})} placeholder="Email" /></p>
             <p><input type="password" onChange={(e) =>setUser({...user,password:e.target.value})} placeholder="Password" /></p>
-            <p><button>Submit</button></p>
+            <p><button onClick={handleSubmit}>Submit</button></p>
             <p>
             <Link to="/login">Already have an Account?Login here</Link>
             </p>

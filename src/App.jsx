@@ -1,3 +1,4 @@
+import { useState,createContext } from "react";
 import Content from "./components/Content";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -8,10 +9,13 @@ import Orders from "./components/Orders";
 import Logout from "./components/Logout";
 import { BrowserRouter,Route,Routes } from "react-router-dom";
 
-
+export const AppContext = createContext()
 function App() {
+  const [user,setUser]=useState({})
+
   return (
     <div>
+      <AppContext.Provider value={{user,setUser}}>
       <BrowserRouter>
       <Header/>
       <Routes>
@@ -24,6 +28,7 @@ function App() {
       </Routes>
       <Footer/>
       </BrowserRouter>
+      </AppContext.Provider>
     </div>
     
   );

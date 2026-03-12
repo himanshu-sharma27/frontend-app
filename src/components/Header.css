@@ -1,13 +1,13 @@
 .App-Header{
   background-color: #282c34;
-  color: white;
+  color: rgb(32, 32, 235);
   display: flex;
   justify-content: space-between;
   padding: 10px;
 
 }
 
-.App-Header li{
+.App-Header li{   
     display: inline-block;
     font-size: 20px;
     padding: 5px;
