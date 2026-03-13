@@ -14,12 +14,12 @@ function Header() {
         <li>
           <Link to="/cart">Cart</Link>
         </li>
-        <li>
-              <Link to="/orders">Order</Link>
-            </li>
+        
         {user?.email ? (
           <>
-            
+            <li>
+              <Link to="/orders">Order</Link>
+            </li>
             <li>
               <Link to="/logout">Logout</Link>
             </li>

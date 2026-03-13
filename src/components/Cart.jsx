@@ -1,4 +1,3 @@
-
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../App";
@@ -49,7 +48,9 @@ function Cart() {
         orderDate: Date.now(),
       };
       console.log(url, order);
-      const response = await axios.post(url, order);
+      const response = await axios.post(url, order, {
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
       setCart([]);
       Navigate("/orders");
     }
@@ -59,22 +60,26 @@ function Cart() {
     <div>
       <h1>My Cart</h1>
       <ol>
-        {cart && cart.map((item) => (
-          <li key={item._id}>
-            {item.name}-{item.price}-
-            <button onClick={() => decrement(item._id)}>-</button>
-            {item.quantity}
-            <button onClick={() => increment(item._id)}>+</button>-
-            {item.quantity * item.price}
-          </li>
-        ))}
+        {cart &&
+          cart.map((item) => (
+            <li key={item._id}>
+              {item.name}-{item.price}-
+              <button onClick={() => decrement(item._id)}>-</button>
+              {item.quantity}
+              <button onClick={() => increment(item._id)}>+</button>-
+              {item.quantity * item.price}
+            </li>
+          ))}
       </ol>
       <p>
         <strong>Order Value:{orderValue}</strong>
       </p>
       <p>
-        {user?.email ?  <button onClick={placeOrder}>Place Order</button> :  <button onClick={()=>Navigate("/login")}>Login to Order</button> }
-       
+        {user?.email ? (
+          <button onClick={placeOrder}>Place Order</button>
+        ) : (
+          <button onClick={() => Navigate("/login")}>Login to Order</button>
+        )}
       </p>
     </div>
   );
