@@ -1,6 +1,7 @@
 .App-Header{
-  background-color: #282c34;
+  background-color: yellow;
   display: flex;
+  color: blue;
   justify-content: space-between;
   padding: 10px;
 
